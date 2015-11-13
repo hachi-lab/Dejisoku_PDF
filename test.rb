@@ -32,15 +32,15 @@ bounding_box([100,300],:width=>100,:height=>100   ){
 
 
 #図形の描画
-pentagram = [[181, 395], [0, 336], [111, 490], [111,300], [0, 454]]
+pentagram = [[181, 495], [0, 436], [111, 590], [111,400], [0, 554]]
 stroke_color 'ff0000'
 line_width 2
-text_box "Nonzero Winding Number", :at => [50, 715],
+text_box "Nonzero Winding Number", :at => [50, 615],
  :width => 170,
  :align => :center
 polygon(*pentagram.map { |x, y| [x + 50, y] })
 fill_and_stroke
-text_box "Even-Odd", :at => [330, 715], :width => 170, :align => :center
+text_box "Even-Odd", :at => [330, 615], :width => 170, :align => :center
 polygon(*pentagram.map { |x, y| [x + 330, y] })
 fill_and_stroke(:fill_rule => :even_odd)
 
