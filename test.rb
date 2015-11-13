@@ -1,15 +1,23 @@
 require "prawn"
+require 'date'
 
-# Assignment
-pdf = Prawn::Document.new
-pdf.text "Hello World"
-pdf.render_file "assignment.pdf"
-# Implicit Block
-Prawn::Document.generate("implicit.pdf") do
- text "Hello World"
-end
-# Explicit Block
-Prawn::Document.generate("explicit.pdf") do |pdf|
- pdf.text "Hello World"
-end
+f_name = File.basename(__FILE__, ".rb")+".pdf"
+
+t = Time.now
+
+Prawn::Document.generate(f_name) {
+
+stroke_axis
+stroke_circle [0,0] , 10 #原点
+
+text "Time now"
+
+bounding_box([100,300],:width=>100,:height=>100   ){
+
+	stroke_bounds
+	stroke_circle [0,0] , 10 # ボックス右下原点の相対座標になる
+	text "#{t}"
+}
+}
+
 
