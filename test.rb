@@ -30,6 +30,18 @@ bounding_box([100,300],:width=>100,:height=>100   ){
 	text "#{t}"
 }
 
+pentagram = [[181, 95], [0, 36], [111, 190], [111, 0], [0, 154]]
+stroke_color 'ff0000'
+line_width 2
+text_box "Nonzero Winding Number", :at => [50, 215],
+ :width => 170,
+ :align => :center
+polygon(*pentagram.map { |x, y| [x + 50, y] })
+fill_and_stroke
+text_box "Even-Odd", :at => [330, 215], :width => 170, :align => :center
+polygon(*pentagram.map { |x, y| [x + 330, y] })
+fill_and_stroke(:fill_rule => :even_odd)
+
 }
 
 
