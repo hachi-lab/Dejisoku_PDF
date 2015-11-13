@@ -12,12 +12,12 @@ endobj
 endobj
 3 0 obj
 << /Type /Pages
-/Count 2
-/Kids [5 0 R 8 0 R]
+/Count 1
+/Kids [5 0 R]
 >>
 endobj
 4 0 obj
-<< /Length 4153
+<< /Length 4085
 >>
 stream
 q
@@ -224,8 +224,6 @@ BT
 [<54> 120 <657374>] TJ
 ET
 
-/DeviceRGB CS
-1.000 0.000 0.000 SCN
 36.0 677.1 m
 576.0 677.1 l
 86.0 136.0 m
@@ -244,32 +242,29 @@ S
 S
 /DeviceRGB cs
 1.000 0.000 0.000 scn
+/DeviceRGB CS
 1.000 0.000 0.000 SCN
 
 BT
-136.0 318.05 Td
-/F1.0 25 Tf
-[<43757272656e74>] TJ
+136.0 327.384 Td
+/F1.0 12 Tf
+[<43757272656e742074696d65206973>] TJ
 ET
 
-1.000 0.000 0.000 SCN
-0.000 0.000 0.000 scn
-1.000 0.000 0.000 scn
-1.000 0.000 0.000 SCN
-
-BT
-136.0 289.15 Td
-/F1.0 25 Tf
-[<74696d65206973>] TJ
-ET
-
-1.000 0.000 0.000 SCN
+0.000 0.000 0.000 SCN
 0.000 0.000 0.000 scn
 
 BT
-136.0 260.25 Td
-/F1.0 25 Tf
-[<323031352d>] TJ
+136.0 313.512 Td
+/F1.0 12 Tf
+[<323031352d31312d3133>] TJ
+ET
+
+
+BT
+136.0 299.64 Td
+/F1.0 12 Tf
+[<30343a31303a3335202b30303030>] TJ
 ET
 
 Q
@@ -294,65 +289,20 @@ endobj
 /Encoding /WinAnsiEncoding
 >>
 endobj
-7 0 obj
-<< /Length 208
->>
-stream
-q
-/DeviceRGB CS
-1.000 0.000 0.000 SCN
-
-BT
-136.0 318.05 Td
-/F1.0 25 Tf
-[<31312d3133>] TJ
-ET
-
-
-BT
-136.0 289.15 Td
-/F1.0 25 Tf
-[<30343a30383a3232>] TJ
-ET
-
-
-BT
-136.0 260.25 Td
-/F1.0 25 Tf
-[<2b30303030>] TJ
-ET
-
-Q
-
-endstream
-endobj
-8 0 obj
-<< /Type /Page
-/Parent 3 0 R
-/MediaBox [0 0 612.0 792.0]
-/Contents 7 0 R
-/Resources << /ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/Font << /F1.0 6 0 R
->>
->>
->>
-endobj
 xref
-0 9
+0 7
 0000000000 65535 f 
 0000000015 00000 n 
 0000000109 00000 n 
 0000000158 00000 n 
-0000000221 00000 n 
-0000004426 00000 n 
-0000004604 00000 n 
-0000004701 00000 n 
-0000004960 00000 n 
+0000000215 00000 n 
+0000004352 00000 n 
+0000004530 00000 n 
 trailer
-<< /Size 9
+<< /Size 7
 /Root 2 0 R
 /Info 1 0 R
 >>
 startxref
-5138
+4627
 %%EOF

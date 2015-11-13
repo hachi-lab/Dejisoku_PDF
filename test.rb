@@ -10,11 +10,9 @@ Prawn::Document.generate(f_name) {
 stroke_axis
 stroke_circle [0,0] , 10 #原点
 
-font_size(25)
-text "Test"
+text "Test", :size => 25
 
 # 線の描画
-stroke_color "ff0000"
 stroke do
  # just lower the current y position
  move_down 50
