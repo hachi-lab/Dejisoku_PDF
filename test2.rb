@@ -6,7 +6,7 @@ Prawn::Document.generate(f_name) {
 #stroke_axis
 
 text "Matz"
-image open "http://www.prometric-jp.com/career/img/pho_20101020_01.jpg"
+image open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"
 
 image "Matz.jpg"
 
