@@ -8,4 +8,6 @@ Prawn::Document.generate(f_name) {
 text "Matz"
 image open "http://www.prometric-jp.com/career/img/pho_20101020_01.jpg"
 
+image "Matz.jpg"
+
 }
