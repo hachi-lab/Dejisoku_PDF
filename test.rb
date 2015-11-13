@@ -32,7 +32,7 @@ bounding_box([100,300],:width=>100,:height=>100   ){
 
 
 #図形の描画
-pentagram = [[181, 595], [0, 536], [111, 690], [111,500], [0, 654]]
+pentagram = [[181, 395], [0, 336], [111, 490], [111,300], [0, 454]]
 stroke_color 'ff0000'
 line_width 2
 text_box "Nonzero Winding Number", :at => [50, 715],
