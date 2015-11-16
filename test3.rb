@@ -10,8 +10,7 @@ stroke_axis
 stroke_circle [0,0] , 10
 
 text "Matz"
-i_url = open ("https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG")
-image i_url, :width => 500
+image open ("https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG")#, :width => 500
 
 #image "Matz.jpg", :width => 500
 
