@@ -20,7 +20,7 @@ stroke do
  # just lower the current y position
  horizontal_rule
  vertical_line 100, 500, :at => 50
- horizontal_line 200, 700, :at => 150
+ horizontal_line 200, 500, :at => 400
 end
 
 }
