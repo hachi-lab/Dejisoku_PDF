@@ -14,11 +14,13 @@ text "Matz"
 
 image "Matz.jpg", :width => 500
 
+stroke_color 'ff0000'
+
 stroke do
  # just lower the current y position
  horizontal_rule
- vertical_line 100, 300, :at => 50
- horizontal_line 200, 500, :at => 150
+ vertical_line 100, 500, :at => 50
+ horizontal_line 200, 700, :at => 150
 end
 
 }
