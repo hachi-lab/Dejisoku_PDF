@@ -8,6 +8,6 @@ Prawn::Document.generate(f_name) {
 text "Matz"
 #image open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"
 
-image "Matz.jpg", :at => [0, 0]
+image "Matz.jpg", :width => 500
 
 }
