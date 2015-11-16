@@ -1,16 +1,22 @@
 require "prawn"
 require "open-uri"
-require "fastimage"
+#require 'fastimage'
+require 'rmagick'
 
-i_size = FastImage.size("https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG")
+#p FastImage.size("http://stephensykes.com/images/ss.com_x.gif")
+img = Magick::ImageList.new("https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG")
+p ws = img.columns
+p hs = img.rows
+puts sprintf("%.3f", 500.000 / ws)
 
 f_name = File.basename(__FILE__, ".rb")+".pdf"
 Prawn::Document.generate(f_name) {
 stroke_axis
 stroke_circle [0,0] , 10
 
+
 text "Matz"
-image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 100
+image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
 
 #image "Matz.jpg", :width => 500
 
