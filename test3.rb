@@ -18,7 +18,7 @@ stroke_color 'ff0000'
 
 stroke do
  # just lower the current y position
- # horizontal_rule
+ horizontal_rule
  vertical_line 100, 500, :at => 50
  horizontal_line 200, 500, :at => 400
 end
