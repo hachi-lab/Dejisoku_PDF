@@ -5,20 +5,21 @@ require 'rmagick'
 
 #p FastImage.size("http://stephensykes.com/images/ss.com_x.gif")
 img = Magick::ImageList.new("1049.jpg")
-p ws = img.columns
-p hs = img.rows
-scale = 700.000 / ws
-puts sprintf("%.3f", scale)
+ws = img.columns
+hs = img.rows
+$scale = 700.000 / ws
+#puts sprintf("%.3f", $scale)
 
-mx = 1705
-my = 1070
-nx = 1597
-ny = 1049
+def coordinate(mx,my,nx,ny)
+mxx = mx * $scale
+myy = 550 - (my * $scale)
+nxx = nx * $scale
+nyy = 550 - (ny * $scale)
 
-mxx = mx * scale
-myy = 550 - (my * scale)
-nxx = nx * scale
-nyy = 550 - (ny * scale)
+stroke_color 'ff0000'
+line [mxx,myy], [nxx,nyy]
+stroke
+end
 
 f_name = File.basename(__FILE__, ".rb")+".pdf"
 Prawn::Document.generate(f_name,
@@ -33,9 +34,6 @@ stroke_circle [0,0] , 10
 
 image "1049.jpg", :width => 700
 
-stroke_color 'ff0000'
-
-line [mxx,myy], [nxx,nyy]
-stroke
+coordinate(1000,1000,2000,2000)
 
 }
