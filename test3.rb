@@ -12,9 +12,9 @@ $scale = 700.000 / ws
 
 def coordinate(mx,my,nx,ny)
 mxx = mx * $scale
-myy = (550 - (my * $scale)).abs
+myy = 550 - (my * $scale)
 nxx = nx * $scale
-nyy = (550 - (ny * $scale)).abs
+nyy = 550 - (ny * $scale)
 
 stroke_color 'ff0000'
 line [mxx,myy], [nxx,nyy]
@@ -34,6 +34,6 @@ stroke_circle [0,0] , 10
 
 image "1049.jpg", :width => 700
 
-coordinate(1000,1000,2000,2000)
+coordinate(500,500,1500,1000)
 
 }
