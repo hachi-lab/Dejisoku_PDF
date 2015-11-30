@@ -10,7 +10,9 @@ p hs = img.rows
 puts sprintf("%.3f", 500.000 / ws)
 
 f_name = File.basename(__FILE__, ".rb")+".pdf"
-Prawn::Document.generate(f_name) {
+Prawn::Document.generate(f_name,
+:page_size => 'A4',
+:page_layout => :landscape){
 stroke_axis
 stroke_circle [0,0] , 10
 
