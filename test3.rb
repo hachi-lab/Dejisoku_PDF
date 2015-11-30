@@ -4,11 +4,21 @@ require "open-uri"
 require 'rmagick'
 
 #p FastImage.size("http://stephensykes.com/images/ss.com_x.gif")
-img = Magick::ImageList.new("https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG")
+img = Magick::ImageList.new("1049.jpg")
 p ws = img.columns
 p hs = img.rows
 scale = 700.000 / ws
 puts sprintf("%.3f", scale)
+
+mx = 1705
+my = 1070
+nx = 1597
+ny = 1049
+
+mxx = mx * scale
+myy = 550 - (my * scale)
+nxx = nx * scale
+nyy = 550 - (ny * scale)
 
 f_name = File.basename(__FILE__, ".rb")+".pdf"
 Prawn::Document.generate(f_name,
@@ -25,11 +35,7 @@ image "1049.jpg", :width => 700
 
 stroke_color 'ff0000'
 
-#stroke do
- # just lower the current y position
- #horizontal_rule
- #vertical_line 100, 500, :at => 50
- #horizontal_line 200, 500, :at => 400
-#end
+line [mxx,myy], [nxx,nyy]
+stroke
 
 }
