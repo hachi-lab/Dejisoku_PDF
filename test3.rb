@@ -34,6 +34,10 @@ stroke_circle [0,0] , 10
 
 image "1049.jpg", :width => 700
 
-coordinate(500,500,1500,1000)
+coordinate(1579,502,3586,770)
+coordinate(3586,770,3519,1721)
+coordinate(3519,1721,2791,1687)
+coordinate(2791,1687,2732,2103)
+coordinate(2732,2103,1416,1954)
 
 }
