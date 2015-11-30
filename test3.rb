@@ -17,10 +17,10 @@ stroke_axis
 stroke_circle [0,0] , 10
 
 
-text "Matz"
-image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
+text "1049"
+#image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
 
-#image "Matz.jpg", :width => 500
+image "1049.jpg", :width => 500
 
 stroke_color 'ff0000'
 
