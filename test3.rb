@@ -12,9 +12,9 @@ $scale = 700.000 / ws
 
 def coordinate(mx,my,nx,ny)
 mxx = mx * $scale
-myy = 550 - (my * $scale)
+myy = 525 - (my * $scale)
 nxx = nx * $scale
-nyy = 550 - (ny * $scale)
+nyy = 525 - (ny * $scale)
 
 stroke_color 'ff0000'
 line [mxx,myy], [nxx,nyy]
