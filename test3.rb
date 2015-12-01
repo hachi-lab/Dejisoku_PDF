@@ -21,7 +21,7 @@ nxx = nx * $scale
 nyy = 525 - (ny * $scale)
 center_x = (mxx+nxx)/2
 center_y = (myy+nyy)/2
-distance = Math.sqrt((((mxx-nxx).abs) ** 2 + ((myy-nyy).abs) ** 2))
+distance = (Math.sqrt((((mxx-nxx).abs) ** 2 + ((myy-nyy).abs) ** 2))).round(1)
 
 
 #描画
