@@ -39,15 +39,16 @@ end
 end
 
 
+#PDFの生成，座標の描画，画像の貼り付け等
+
 f_name = File.basename(__FILE__, ".rb")+".pdf"
 Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
+
 stroke_axis
 stroke_circle [0,0] , 10
 
-
-#text "1049"
 #image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
 
 image "1049.jpg", :width => 700
