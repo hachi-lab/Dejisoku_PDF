@@ -14,21 +14,27 @@ $scale = 700.000 / ws
 
 def coordinate(mx,my,nx,ny)
 
-#デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める
+#デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める その他変数定義
 mxx = mx * $scale
 myy = 525 - (my * $scale)
 nxx = nx * $scale
 nyy = 525 - (ny * $scale)
+fx = (mxx - nxx).abs
+fy = (myy - nyy).abs
 center_x = (mxx+nxx)/2
 center_y = (myy+nyy)/2
-distance = (Math.sqrt((((mxx-nxx).abs) ** 2 + ((myy-nyy).abs) ** 2))).round(1)
-
+distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
+angle = 270
 
 #描画
 
 line [mxx,myy], [nxx,nyy]
 stroke
+if fx > fy then
 draw_text distance, :at => [center_x, center_y]
+else
+draw_text(distance, :at => [center_x, center_y], :rotate => angle)
+end
 
 end
 
