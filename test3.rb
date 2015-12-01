@@ -1,25 +1,37 @@
 require "prawn"
 require "open-uri"
-#require 'fastimage'
 require 'rmagick'
+require 'complex'
 
-#p FastImage.size("http://stephensykes.com/images/ss.com_x.gif")
+#画像の読込・サイズ測定と縮尺獲得
 img = Magick::ImageList.new("1049.jpg")
 ws = img.columns
 hs = img.rows
 $scale = 700.000 / ws
-#puts sprintf("%.3f", $scale)
+
+
+#測定結果を出力するメソッド
 
 def coordinate(mx,my,nx,ny)
+
+#デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める
 mxx = mx * $scale
 myy = 525 - (my * $scale)
 nxx = nx * $scale
 nyy = 525 - (ny * $scale)
+center_x = (mxx+nxx)/2
+center_y = (myy+nyy)/2
+distance = Math.sqrt((((mxx-nxx).abs) ** 2 + ((myy-nyy).abs) ** 2))
 
-stroke_color 'ff0000'
+
+#描画
+
 line [mxx,myy], [nxx,nyy]
+draw_text distance, :at => [center_x, center_y]
 stroke
+
 end
+
 
 f_name = File.basename(__FILE__, ".rb")+".pdf"
 Prawn::Document.generate(f_name,
