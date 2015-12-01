@@ -21,8 +21,8 @@ nxx = nx * $scale
 nyy = 525 - (ny * $scale)
 fx = (mxx - nxx).abs
 fy = (myy - nyy).abs
-center_x = (mxx+nxx)/2
-center_y = (myy+nyy)/2
+center_x = ((mxx+nxx) / 2) - 25
+center_y = ((myy+nyy) / 2) + 25
 distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
 angle = 270
 
