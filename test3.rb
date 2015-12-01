@@ -27,8 +27,8 @@ distance = Math.sqrt((((mxx-nxx).abs) ** 2 + ((myy-nyy).abs) ** 2))
 #描画
 
 line [mxx,myy], [nxx,nyy]
-draw_text distance, :at => [center_x, center_y]
 stroke
+draw_text distance, :at => [center_x, center_y]
 
 end
 
