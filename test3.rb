@@ -7,7 +7,7 @@ require 'complex'
 img = Magick::ImageList.new("1049.jpg")
 ws = img.columns
 hs = img.rows
-$scale = 700.000 / ws
+$scale = 750.000 / ws
 
 
 #測定結果を出力するメソッド
@@ -51,7 +51,7 @@ stroke_circle [0,0] , 10
 
 #image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
 
-image "1049.jpg", :width => 700
+image "1049.jpg", :width => 750
 
 coordinate(1579,502,3586,770)
 coordinate(3586,770,3519,1721)
