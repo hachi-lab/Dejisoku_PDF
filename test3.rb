@@ -24,17 +24,18 @@ fy = (myy - nyy).abs
 center_x = ((mxx+nxx) / 2)
 center_y = ((myy+nyy) / 2)
 distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
-angle = 270
+angle = Math.atan(fx/fy)
 
 #描画
 
 line [mxx,myy], [nxx,nyy]
 stroke
-if fx > fy then
-draw_text distance, :at => [center_x, center_y]
-else
+#if fx > fy then
+#draw_text distance, :at => [center_x, center_y]
+#else
+#draw_text(distance, :at => [center_x, center_y], :rotate => angle)
+#end
 draw_text(distance, :at => [center_x, center_y], :rotate => angle)
-end
 
 end
 
