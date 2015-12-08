@@ -23,7 +23,7 @@ fy = (myy - nyy).abs
 center_x = ((mxx+nxx) / 2)
 center_y = ((myy+nyy) / 2)
 distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
-angle = 360 - (Math.atan(fx/fy) * 180.0 / Math::PI)
+angle = 360 - ((Math.atan(fx/fy) * 180.0 / Math::PI) + 90)
 angle2 = 360 - (90 - (Math.atan(fx/fy) * 180.0 /Math::PI))
 slope = (myy - nyy) / (mxx - nxx)
 
