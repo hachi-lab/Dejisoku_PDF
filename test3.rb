@@ -45,7 +45,7 @@ if slope >= 0 then
 if slope * origin_x + intercept > origin_y then
 draw_text(distance, :at => [center_x - xxxxx, center_y - yyyyy], :rotate => angle)
 else
-draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle)
+draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle + 180)
 end
 
 else
@@ -53,7 +53,7 @@ else
 if slope * origin_x + intercept > origin_y then
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 else
-draw_text(distance, :at => [center_x - xxxxx, center_y - yyyyy], :rotate => angle2)
+draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 end
 
 end
