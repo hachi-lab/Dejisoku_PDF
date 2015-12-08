@@ -24,7 +24,7 @@ center_x = ((mxx+nxx) / 2)
 center_y = ((myy+nyy) / 2)
 distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
 angle = Math.atan(fx/fy) * 180.0 / Math::PI
-angle2 = 360 - angle
+angle2 = 360 - (90 - angle)
 slope = (myy - nyy) / (mxx - nxx)
 
 #描画
