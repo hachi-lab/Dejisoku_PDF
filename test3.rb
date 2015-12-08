@@ -26,7 +26,7 @@ distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
 angle = 360 - ((Math.atan(fx/fy) * 180.0 / Math::PI) + 90)
 angle2 = 360 - (90 - (Math.atan(fx/fy) * 180.0 /Math::PI))
 slope = (myy - nyy) / (mxx - nxx)
-value = 10
+value = 12.5
 xxxxx = value * Math.cos(Math::PI / 180.0 * angle)
 yyyyy = value * Math.sin(Math::PI / 180.0 * angle)
 
