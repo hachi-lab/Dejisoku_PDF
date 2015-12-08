@@ -37,9 +37,9 @@ stroke
 #draw_text(distance, :at => [center_x, center_y], :rotate => angle)
 #end
 if slope >= 0 then
-draw_text(distance, :at => [center_x, center_y], :rotate => angle)
+draw_text(angle, :at => [center_x, center_y], :rotate => angle)
 else
-draw_text(distance, :at => [center_x, center_y], :rotate => angle2)
+draw_text(angle, :at => [center_x, center_y], :rotate => angle2)
 end
 
 end
