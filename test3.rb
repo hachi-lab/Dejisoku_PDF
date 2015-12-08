@@ -26,6 +26,9 @@ distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
 angle = Math.atan(fy/fx) * 180.0 / Math::PI
 angle2 = 360 - (Math.atan(fy/fx) * 180.0 /Math::PI)
 slope = (myy - nyy) / (mxx - nxx)
+intercept = (nxx * myy - mxx * nyy) / (nxx -mxx)
+origin_x = 312.5
+origin_y = 375.0
 value = 12.5
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
@@ -34,19 +37,28 @@ yyyyy = value * Math.sin(angle * Math::PI / 180)
 
 line [mxx,myy], [nxx,nyy]
 stroke
-#if fx > fy then
-#draw_text(distance, :at => [center_x, center_y], :rotate => angle2)
 #else
 #draw_text(distance, :at => [center_x, center_y], :rotate => angle)
 #end
 if slope >= 0 then
+
+if slope * origin_x + intercept > origin_y then
 draw_text(distance, :at => [center_x - xxxxx, center_y - yyyyy], :rotate => angle)
 else
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 end
 
+else
+
+if slope * origin_x + intercept > origin_y then
+draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
+else
+draw_text(distance, :at => [center_x - xxxxx, center_y - yyyyy], :rotate => angle)
 end
 
+end
+
+end
 
 #PDFの生成，座標の描画，画像の貼り付け等
 
