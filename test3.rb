@@ -26,6 +26,9 @@ distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
 angle = 360 - ((Math.atan(fx/fy) * 180.0 / Math::PI) + 90)
 angle2 = 360 - (90 - (Math.atan(fx/fy) * 180.0 /Math::PI))
 slope = (myy - nyy) / (mxx - nxx)
+value = 25
+xxxxx = value * Math.cos(Math::PI / 180.0 * angle)
+yyyyy = value * Math.sin(Math::PI / 180.0 * angle)
 
 #描画
 
@@ -37,9 +40,9 @@ stroke
 #draw_text(distance, :at => [center_x, center_y], :rotate => angle)
 #end
 if slope >= 0 then
-draw_text(distance, :at => [center_x, center_y], :rotate => angle)
+draw_text(distance, :at => [center_x + xxxxx, center_y + yyyyy], :rotate => angle)
 else
-draw_text(distance, :at => [center_x, center_y], :rotate => angle2)
+draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 end
 
 end
