@@ -5,9 +5,9 @@ require 'complex'
 
 #画像の読込・サイズ測定と縮尺獲得
 img = Magick::ImageList.new("1049.jpg")
-ws = img.columns
-hs = img.rows
-$scale = 750.000 / ws
+$ws = img.columns
+$hs = img.rows
+$scale = 750.000 / $ws
 
 #測定結果を出力するメソッド
 
@@ -28,7 +28,7 @@ angle2 = 360 - (Math.atan(fy/fx) * 180.0 /Math::PI)
 slope = (myy - nyy) / (mxx - nxx)
 intercept = (nxx * myy - mxx * nyy) / (nxx -mxx)
 origin_x = 375.0
-origin_y = 312.5
+origin_y = 525 - ($hs * $scale / 2)
 value = 12.5
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
@@ -50,10 +50,10 @@ end
 
 else
 
-if slope * origin_x + intercept > origin_y then
+if angle <= 45 then
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 else
-draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
+draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2 + 180)
 end
 
 end
