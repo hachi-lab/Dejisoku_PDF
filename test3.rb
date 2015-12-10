@@ -37,12 +37,10 @@ yyyyy = value * Math.sin(angle * Math::PI / 180)
 
 line [mxx,myy], [nxx,nyy]
 stroke
-#else
-#draw_text(distance, :at => [center_x, center_y], :rotate => angle)
-#end
+
 if slope >= 0 then
 
-if slope * origin_x + intercept > origin_y then
+if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
 draw_text(distance, :at => [center_x - xxxxx, center_y - yyyyy], :rotate => angle)
 else
 draw_text(distance, :at => [center_x + xxxxx, center_y + yyyyy], :rotate => angle + 180)
@@ -50,7 +48,7 @@ end
 
 else
 
-if angle <= 45 then
+if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 else
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2 + 180)
