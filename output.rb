@@ -40,6 +40,11 @@ line [mxx,myy], [nxx,nyy]
 stroke
 
 
+fill_color "000000"
+stroke_color "fffffff"
+
+text_rendering_mode(:fill_stroke) do
+
 if slope >= 0 then
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
@@ -54,6 +59,8 @@ if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= o
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
 else
 draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2 + 180)
+end
+
 end
 
 end
