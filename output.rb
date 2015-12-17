@@ -29,7 +29,7 @@ slope = (myy - nyy) / (mxx - nxx)
 intercept = (nxx * myy - mxx * nyy) / (nxx - mxx)
 origin_x = 375.0
 origin_y = 525 - ($hs * $scale / 2)
-value = 12.5
+value = 15
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
 
@@ -43,7 +43,7 @@ stroke
 fill_color "000000"
 stroke_color "ffffff"
 
-font_size(20) do
+font_size(25) do
 text_rendering_mode(:fill_stroke) do
 
 if slope >= 0 then
