@@ -40,10 +40,10 @@ line [mxx,myy], [nxx,nyy]
 stroke
 
 
-fill_color "000000"
-stroke_color "fffffff"
+fill_color "ffffff"
+stroke_color "000000"
 
-text_rendering_mode(:fill_stroke) do
+text_rendering_mode(:stroke_clip) do
 
 if slope >= 0 then
 
