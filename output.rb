@@ -40,8 +40,8 @@ stroke_color "000000"
 line [mxx,myy], [nxx,nyy]
 stroke
 
-fill_color "ffffff"
-stroke_color "000000"
+fill_color "000000"
+stroke_color "ffffff"
 
 text_rendering_mode(:fill_stroke) do
 
