@@ -36,9 +36,14 @@ yyyyy = value * Math.sin(angle * Math::PI / 180)
 
 #描画
 
+stroke_color "000000"
 line [mxx,myy], [nxx,nyy]
 stroke
 
+fill_color "ffffff"
+stroke_color "000000"
+
+text_rendering_mode(:fill_stroke) do
 
 if slope >= 0 then
 
@@ -60,6 +65,7 @@ end
 
 end
 
+end
 
 #PDFの生成，座標の描画，画像の貼り付け等
 
