@@ -29,7 +29,7 @@ slope = (myy - nyy) / (mxx - nxx)
 intercept = (nxx * myy - mxx * nyy) / (nxx - mxx)
 origin_x = 375.0
 origin_y = 525 - ($hs * $scale / 2)
-value = 15
+value = 125
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
 
