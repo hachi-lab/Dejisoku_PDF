@@ -43,7 +43,7 @@ stroke
 fill_color "000000"
 stroke_color "ffffff"
 
-font_size(40) do
+font_size(20) do
 text_rendering_mode(:fill_stroke) do
 
 if slope >= 0 then
