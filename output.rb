@@ -40,11 +40,6 @@ line [mxx,myy], [nxx,nyy]
 stroke
 
 
-fill_color "ffffff"
-stroke_color "000000"
-
-text_rendering_mode(:stroke_clip) do
-
 if slope >= 0 then
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
@@ -65,7 +60,6 @@ end
 
 end
 
-end
 
 #PDFの生成，座標の描画，画像の貼り付け等
 
