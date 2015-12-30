@@ -20,10 +20,11 @@ stroke_circle [0,0] , 10
 end
 
 def kit
-font_size(30) do
-draw_text "KIT", :at => [50, 20]
-end
-image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,20]
+
+formatted_text [
+{ :text => "KIT", :styles => [:italic], :size => 30, :character_spacing => 3, :at => [50, 50] }
+]
+image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
 end
 
 #end
