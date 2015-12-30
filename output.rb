@@ -12,8 +12,6 @@ $scale = 750.000 / $ws
 
 #出力形式の作成
 
-#class Background
-
 def plane 
 stroke_axis
 stroke_circle [0,0] , 10
@@ -26,8 +24,6 @@ formatted_text_box [
 ], :at => [50,50]
 image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
 end
-
-#end
 
 
 #測定結果を出力するメソッド
@@ -98,9 +94,7 @@ Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
 
-kit
-
-#image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
+ARGV[0]
 
 image "1049.jpg", :width => 750
 
