@@ -21,9 +21,9 @@ end
 
 def kit
 font_size(30) do
-text_box "KIT", :at => [50, 20]
+draw_text "KIT", :at => [50, 20]
 end
-image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :position => 500
+image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,20]
 end
 
 #end
