@@ -9,6 +9,26 @@ $ws = img.columns
 $hs = img.rows
 $scale = 750.000 / $ws
 
+
+#出力形式の作成
+
+#class Background
+
+def plane 
+stroke_axis
+stroke_circle [0,0] , 10
+end
+
+def kit
+font_size(30) do
+text_box "九州工業大学", :at => [50, 20]
+end
+image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :position => right
+end
+
+#end
+
+
 #測定結果を出力するメソッド
 
 def coordinate(mx,my,nx,ny)
@@ -77,8 +97,7 @@ Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
 
-stroke_axis
-stroke_circle [0,0] , 10
+plane
 
 #image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
 
