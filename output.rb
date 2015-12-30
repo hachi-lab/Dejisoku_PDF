@@ -21,9 +21,9 @@ end
 
 def kit
 
-formatted_text [
-{ :text => "KIT", :styles => [:italic], :size => 30, :character_spacing => 3, :at => [50, 50] }
-]
+formatted_text_box [
+{ :text => "Kyushu Institute of Technology", :styles => [:italic], :size => 30}
+], :at => [50,50]
 image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
 end
 
