@@ -12,13 +12,12 @@ $scale = 750.000 / $ws
 
 #出力形式の作成
 
-def plane 
+def plane
 stroke_axis
 stroke_circle [0,0] , 10
 end
 
 def kit
-
 formatted_text_box [
 { :text => "Kyushu Institute of Technology", :styles => [:italic], :size => 30}
 ], :at => [50,50]
@@ -94,7 +93,12 @@ Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
 
-ARGV[0]
+case ARGV[0]
+when "plane" then
+plane
+when "kit" then
+kit
+end
 
 image "1049.jpg", :width => 750
 
