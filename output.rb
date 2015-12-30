@@ -21,9 +21,9 @@ end
 
 def kit
 font_size(30) do
-text_box "九州工業大学", :at => [50, 20]
+text_box "KIT", :at => [50, 20]
 end
-image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :position => right
+image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :position => 500
 end
 
 #end
@@ -97,7 +97,7 @@ Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
 
-plane
+kit
 
 #image (open "https://upload.wikimedia.org/wikipedia/commons/7/76/Yukihiro_Matsumoto.JPG"), :width => 500
 
