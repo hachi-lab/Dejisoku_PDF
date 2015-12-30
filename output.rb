@@ -18,6 +18,9 @@ stroke_circle [0,0] , 10
 end
 
 def kit
+stroke_axis
+stroke_circle [0,0] , 10
+
 formatted_text_box [
 { :text => "Kyushu Institute of Technology", :styles => [:italic], :size => 30}
 ], :at => [50,50]
@@ -86,6 +89,7 @@ end
 
 end
 
+
 #PDFの生成，座標の描画，画像の貼り付け等
 
 f_name = File.basename(__FILE__, ".rb")+".pdf"
@@ -93,6 +97,7 @@ Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
 
+#出力形式の選択
 case ARGV[0]
 when "plane" then
 plane
