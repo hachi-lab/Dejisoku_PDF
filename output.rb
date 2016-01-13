@@ -10,11 +10,20 @@ $hs = img.rows
 $scale = 750.000 / $ws
 
 
+#画像のオフセット表示
+def offset_image(mv)
+image "1049.jpg", :width => 750, :vposition => mv
+$mvv = mv
+end
+
 #出力形式の作成
 
 def plane
 stroke_axis
 stroke_circle [0,0] , 10
+
+offset_image(0)
+
 end
 
 def kit
@@ -25,6 +34,9 @@ formatted_text_box [
 { :text => "Kyushu Institute of Technology", :styles => [:italic], :size => 30}
 ], :at => [50,50]
 image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
+
+offset_image(25)
+
 end
 
 
@@ -34,9 +46,9 @@ def coordinate(mx,my,nx,ny)
 
 #デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める その他変数定義
 mxx = mx * $scale
-myy = 525 - (my * $scale)
+myy = (525 - $mvv) - (my * $scale)
 nxx = nx * $scale
-nyy = 525 - (ny * $scale)
+nyy = (525 - $mvv) - (ny * $scale)
 fx = (mxx - nxx).abs
 fy = (myy - nyy).abs
 center_x = ((mxx + nxx) / 2)
@@ -47,7 +59,7 @@ angle2 = 360 - (Math.atan(fy / fx) * 180.0 /Math::PI)
 slope = (myy - nyy) / (mxx - nxx)
 intercept = (nxx * myy - mxx * nyy) / (nxx - mxx)
 origin_x = 375.0
-origin_y = 525 - ($hs * $scale / 2)
+origin_y = (525 - $mvv) - ($hs * $scale / 2)
 value = 25
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
@@ -105,7 +117,6 @@ when "kit" then
 kit
 end
 
-image "1049.jpg", :width => 750
 
 coordinate(1579,502,3586,770)
 coordinate(3586,770,3519,1721)
