@@ -35,7 +35,7 @@ formatted_text_box [
 ], :at => [50,50]
 image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
 
-offset_image(50)
+offset_image(20)
 
 end
 
