@@ -46,9 +46,9 @@ def coordinate(mx,my,nx,ny)
 
 #デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める その他変数定義
 mxx = mx * $scale
-myy = (520 - $mvv) - (my * $scale)
+myy = (525 - $mvv) - (my * $scale)
 nxx = nx * $scale
-nyy = (520 - $mvv) - (ny * $scale)
+nyy = (525 - $mvv) - (ny * $scale)
 fx = (mxx - nxx).abs
 fy = (myy - nyy).abs
 center_x = ((mxx + nxx) / 2)
@@ -59,7 +59,7 @@ angle2 = 360 - (Math.atan(fy / fx) * 180.0 /Math::PI)
 slope = (myy - nyy) / (mxx - nxx)
 intercept = (nxx * myy - mxx * nyy) / (nxx - mxx)
 origin_x = 375.0
-origin_y = (520 - $mvv) - ($hs * $scale / 2)
+origin_y = (525 - $mvv) - ($hs * $scale / 2)
 value = 25
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
