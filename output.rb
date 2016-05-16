@@ -2,6 +2,43 @@ require "prawn"
 require "open-uri"
 require 'rmagick'
 require 'complex'
+require 'rubygems'
+require 'json'
+require 'rest_client'
+
+#デジカメ計速のAPIとアカウント指定
+$api_server = 'http://api2.dc-keisoku.com'
+$username = 'tanaka_lab'
+$password = 'pass'
+$project_id = 'test'
+
+#ログイン
+puts '=== /user/login'
+$key = RestClient.post("#{$api_server}/user/login",
+username: $username, 
+password: $password)
+
+#プロジェクト一覧の取得
+puts '=== /project/list'
+ret = RestClient.post("#{$api_server}/project/list",
+key: $key)
+projects = JSON.parse(ret)
+
+#画像のURLを取得
+puts '=== /project/images'
+ret = RestClient.post("#{$api_server}/project/images",
+key: $key,
+project_id: $project_id)
+images = JSON.parse(ret)
+
+imagelist = []
+images.each do |image|
+url = RestClient.post("#{$api_server}/image/image_url",
+key: $key,
+image_id: image["id"])
+imagelist << {id: image["id"], url: url}
+end
+
 
 #画像の読込・サイズ測定と縮尺獲得
 img = Magick::ImageList.new("1049.jpg")
