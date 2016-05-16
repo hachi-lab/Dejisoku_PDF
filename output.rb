@@ -1,8 +1,7 @@
-require "prawn"
-require "open-uri"
+require 'prawn'
+require 'open-uri'
 require 'rmagick'
 require 'complex'
-require 'rubygems'
 require 'json'
 require 'rest_client'
 
@@ -39,11 +38,11 @@ image_id: image["id"])
 imagelist << {id: image["id"], url: url}
 end
 
-gazo = imagelist[0][:url]
+$gazo = imagelist[0][:url]
 
 
 #画像の読込・サイズ測定と縮尺獲得
-img = Magick::ImageList.new(gazo)
+img = Magick::ImageList.new($gazo)
 $ws = img.columns
 $hs = img.rows
 $scale = 750.000 / $ws
@@ -51,7 +50,7 @@ $scale = 750.000 / $ws
 
 #画像のオフセット表示
 def offset_image(mv)
-image "1049.jpg", :width => 750, :vposition => mv
+image (open $gazo), :width => 750, :vposition => mv
 $mvv = mv
 end
 
