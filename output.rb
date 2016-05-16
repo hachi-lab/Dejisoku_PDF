@@ -10,7 +10,7 @@ require 'rest_client'
 $api_server = 'http://api2.dc-keisoku.com'
 $username = 'tanaka_lab'
 $password = 'pass'
-$project_id = 'test'
+$project_id = 545
 
 #ログイン
 puts '=== /user/login'
@@ -39,9 +39,11 @@ image_id: image["id"])
 imagelist << {id: image["id"], url: url}
 end
 
+gazo = imagelist[0][:url]
+
 
 #画像の読込・サイズ測定と縮尺獲得
-img = Magick::ImageList.new("1049.jpg")
+img = Magick::ImageList.new(gazo)
 $ws = img.columns
 $hs = img.rows
 $scale = 750.000 / $ws
