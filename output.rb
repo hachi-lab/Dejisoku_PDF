@@ -10,6 +10,7 @@ $api_server = 'http://api2.dc-keisoku.com'
 $username = 'tanaka_lab'
 $password = 'pass'
 $project_id = 545
+$image_id = 1538
 
 #ログイン
 puts '=== /user/login'
@@ -39,6 +40,14 @@ imagelist << {id: image["id"], url: url}
 end
 
 $gazo = imagelist[0][:url]
+
+#点と線の情報を取得
+puts '=== /point/get_line_all_detail'
+ret = RestClient.post("#{$api_server}/point/get_line_all_detail",
+key: $key,
+image_id: $image_id)
+line_info = JSON.parse(ret)
+puts line_info
 
 
 #画像の読込・サイズ測定と縮尺獲得
