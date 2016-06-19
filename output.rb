@@ -47,7 +47,16 @@ ret = RestClient.post("#{$api_server}/point/get_line_all_detail",
 key: $key,
 image_id: $image_id)
 line_info = JSON.parse(ret)
-puts line_info
+line_list = []
+i = 0
+line_info.each do |linf|
+line_list[i] = [linf[1][1],linf[1][2],linf[2][1],linf[2][2],linf[3]]
+i += 1
+end
+
+line_list.each do |h|
+p h
+end
 
 
 #画像の読込・サイズ測定と縮尺獲得
@@ -89,7 +98,7 @@ end
 
 #測定結果を出力するメソッド
 
-def coordinate(mx,my,nx,ny)
+def coordinate(mx,my,nx,ny,len)
 
 #デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める その他変数定義
 mxx = mx * $scale
@@ -100,7 +109,8 @@ fx = (mxx - nxx).abs
 fy = (myy - nyy).abs
 center_x = ((mxx + nxx) / 2)
 center_y = ((myy + nyy) / 2)
-distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
+#distance = (Math.sqrt(fx ** 2 + fy ** 2)).round(1)
+distance = len
 angle = Math.atan(fy / fx) * 180.0 / Math::PI
 angle2 = 360 - (Math.atan(fy / fx) * 180.0 /Math::PI)
 slope = (myy - nyy) / (mxx - nxx)
@@ -165,15 +175,9 @@ kit
 end
 
 
-coordinate(1579,502,3586,770)
-coordinate(3586,770,3519,1721)
-coordinate(3519,1721,2791,1687)
-coordinate(2791,1687,2732,2103)
-coordinate(2732,2103,1416,1954)
-coordinate(1416,1954,2347,914)
-coordinate(2347,914,2479,929)
-coordinate(2479,929,2459,1150)
-coordinate(2459,1150,2325,1135)
-coordinate(2325,1135,1579,502)
+line_list.each do |list|
+coordinate(list[0],list[1],list[2],list[3],list[4])
+end
+
 
 }
