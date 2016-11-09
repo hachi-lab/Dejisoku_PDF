@@ -4,6 +4,7 @@ require 'rmagick'
 require 'complex'
 require 'json'
 require 'rest_client'
+include Magick
 
 #デジカメ計速のAPIとアカウント指定
 $api_server = 'http://api2.dc-keisoku.com'
@@ -39,7 +40,7 @@ image_id: image["id"])
 imagelist << {id: image["id"], url: url}
 end
 
-$gazo = imagelist[0][:url]
+puts $gazo = imagelist[0][:url]
 
 #点と線の情報を取得
 puts '=== /point/get_line_all_detail'
@@ -60,7 +61,7 @@ end
 
 
 #画像の読込・サイズ測定と縮尺獲得
-img = Magick::ImageList.new($gazo)
+img = Magick::ImageList.new("1050.jpg")
 $ws = img.columns
 $hs = img.rows
 $scale = 750.000 / $ws
@@ -98,7 +99,7 @@ end
 
 #測定結果を出力するメソッド
 
-def coordinate(mx,my,nx,ny,len)
+def dot_specific(mx,my,nx,ny,len)
 
 #デジカメ計速の座標を圧縮拡大変換してPDF用の座標・距離を求める その他変数定義
 mxx = mx * $scale
@@ -120,9 +121,58 @@ origin_y = (525 - $mvv) - ($hs * $scale / 2)
 value = 25
 xxxxx = value * Math.cos(angle * Math::PI / 180)
 yyyyy = value * Math.sin(angle * Math::PI / 180)
+sxa = center_x - xxxxx
+sya = center_y - yyyyy
+sxb = center_x + xxxxx
+sxb = center_y + yyyyy
+
+#描画始点を求める
+
+winfo = []
+
+if slope >= 0 then
+
+if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
+winfo = [sxa, sya, angle]
+else
+winfo = [sxb, syb, angle + 180]
+end
+
+else
+
+if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
+winfo = [sxa, syb, angle2]
+else
+winfo = [sxa, syb, angle2 + 180]
+end
+
+end
+
+#描画四点を求める
+
+ry1 = 34 * Math.sin(winfo[2])
+ry2 = 34 * Math.cos(winfo[2])
+ry3 = 85 * Math.sin(winfo[2])
+ry4 = 85 * Math.cos(winfo[2])
+
+dot1 = []
+dot2 = []
+dot3 = []
+dot4 = []
+
+dot1 = [winfo[0], winfo[1]]
+dot2 = [-ry1 + winfo[0], ry2 + winfo[1]]
+dot3 = [ry4 - ry1 + winfo[0], ry3 + ry2 + winfo[1]]
+dot4 = [ry4 + winfo[0], ry3 + winfo[1]]
+
+return [dot1, dot2, dot3, dot4]
+
+end
 
 
 #描画
+
+def coordinate
 
 stroke_color "000000"
 line [mxx,myy], [nxx,nyy]
@@ -131,26 +181,8 @@ stroke
 fill_color "000000"
 stroke_color "ffffff"
 
-font_size(25) do
+font_size(25.5) do
 text_rendering_mode(:fill_stroke) do
-
-if slope >= 0 then
-
-if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-draw_text(distance, :at => [center_x - xxxxx, center_y - yyyyy], :rotate => angle)
-else
-draw_text(distance, :at => [center_x + xxxxx, center_y + yyyyy], :rotate => angle + 180)
-end
-
-else
-
-if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2)
-else
-draw_text(distance, :at => [center_x - xxxxx, center_y + yyyyy], :rotate => angle2 + 180)
-end
-
-end
 
 end
 
@@ -175,8 +207,12 @@ kit
 end
 
 
+#描画座標情報を格納
+
+dot_list = []
+
 line_list.each do |list|
-coordinate(list[0],list[1],list[2],list[3],list[4])
+dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])
 end
 
 
