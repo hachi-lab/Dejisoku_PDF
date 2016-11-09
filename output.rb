@@ -61,9 +61,9 @@ end
 
 
 #画像の読込・サイズ測定と縮尺獲得
-img = Magick::ImageList.new("1050.jpg")
-$ws = img.columns
-$hs = img.rows
+img = ImageList.new($gazo)
+puts $ws = img.columns
+puts $hs = img.rows
 $scale = 750.000 / $ws
 
 
