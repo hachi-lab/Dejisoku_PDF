@@ -61,7 +61,7 @@ end
 
 
 #画像の読込・サイズ測定と縮尺獲得
-img = ImageList.new($gazo)
+img = ImageList.new("1049.jpg")
 puts $ws = img.columns
 puts $hs = img.rows
 $scale = 750.000 / $ws
@@ -124,7 +124,7 @@ yyyyy = value * Math.sin(angle * Math::PI / 180)
 sxa = center_x - xxxxx
 sya = center_y - yyyyy
 sxb = center_x + xxxxx
-sxb = center_y + yyyyy
+syb = center_y + yyyyy
 
 #描画始点を求める
 
@@ -133,17 +133,19 @@ winfo = []
 if slope >= 0 then
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-winfo = [sxa, sya, angle]
+winfo << sxa << sya << angle
 else
-winfo = [sxb, syb, angle + 180]
+angle = angle + 180
+winfo << sxb << syb << angle
 end
 
 else
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-winfo = [sxa, syb, angle2]
+winfo << sxa << syb << angle2
 else
-winfo = [sxa, syb, angle2 + 180]
+angle2 = angle2 + 180
+winfo << sxa << syb << angle2
 end
 
 end
@@ -215,5 +217,6 @@ line_list.each do |list|
 dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])
 end
 
+p dot_list
 
 }
