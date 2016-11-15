@@ -162,15 +162,56 @@ dot2 = []
 dot3 = []
 dot4 = []
 
-dot1 = [winfo[0], winfo[1]]
-dot2 = [-ry1 + winfo[0], ry2 + winfo[1]]
-dot3 = [ry4 - ry1 + winfo[0], ry3 + ry2 + winfo[1]]
-dot4 = [ry4 + winfo[0], ry3 + winfo[1]]
+dot1 = [winfo[0].round, winfo[1].round]
+dot2 = [(-ry1 + winfo[0]).round, (ry2 + winfo[1]).round]
+dot3 = [(ry4 - ry1 + winfo[0]).round, (ry3 + ry2 + winfo[1]).round]
+dot4 = [(ry4 + winfo[0]).round, (ry3 + winfo[1]).round]
 
-return [dot1, dot2, dot3, dot4]
+dinfo = []
+dinfo = [dot1, dot2, dot3, dot4]
+
+return dinfo
 
 end
 
+
+#判定（線分）
+
+def decision(ax, ay, bx, by, cx, cy, dx, dy)
+
+i = 0
+
+ans1 = (ax - bx) * (cy - ay) + (ay - by) * (ax - cy)
+ans2 = (ax - bx) * (dy - ay) + (ay - by) * (ax - dy)
+
+ans3 = (cx - dx) * (ay - cy) + (cy - dy) * (cx - ay)
+ans4 = (cx - dx) * (by - cy) + (cy - dy) * (cx - by)
+
+if ((ans1 >= 0 && ans2 <= 0) || (ans1 <= 0 && ans2 >= 0)) && ((ans3 >= 0 && ans4 <= 0) || (ans3 <= 0 && ans4 >= 0)) then
+
+return 1
+
+else
+
+return 0
+
+end
+end
+
+
+#判定(文字）
+def judgement
+
+if decision($dot_list[0][0][0], $dot_list[0][0][1], $dot_list[0][1][0], $dot_list[0][1][1], $dot_list[1][0][0], $dot_list[1][0][1], $dot_list[1][1][0], $dot_list[1][1][1]) > 0 then
+
+puts "衝突"
+
+else 
+
+puts "衝突しない"
+
+end
+end
 
 #描画
 
@@ -211,12 +252,17 @@ end
 
 #描画座標情報を格納
 
-dot_list = []
+$dot_list = []
 
 line_list.each do |list|
-dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])
+$dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])
 end
 
-p dot_list
+$dot_list.each do |list|
+p list
+end
+
+judgement
+
 
 }
