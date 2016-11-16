@@ -202,15 +202,69 @@ end
 #判定(文字）
 def judgement
 
-if decision($dot_list[0][0][0], $dot_list[0][0][1], $dot_list[0][1][0], $dot_list[0][1][1], $dot_list[1][0][0], $dot_list[1][0][1], $dot_list[1][1][0], $dot_list[1][1][1]) > 0 then
+h = 0
+i = 0
 
-puts "衝突"
+aaa = []
 
-else 
+fac = $dot_list.length
+numbers = []
+g = 0
 
-puts "衝突しない"
+fac.times do
+numbers << g
+g = g + 1
+end
+
+
+numbers.combination(2) {|j,k|
+
+4.times do
+if h <= 2 then
+
+4.times do
+if i <= 2 then
+aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+i = i + 1
+else
+aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
+end
+end
+
+h = h + 1
+i = 0
+
+else
+
+4.times do
+if i <= 2 then
+aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+i = i + 1
+else
+aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
+end
+end
+end
 
 end
+
+}
+
+
+p aaa.each_slice(16).to_a
+
+
+k = 0
+aaa.each do |list|
+k = k + list
+end
+
+if k == 0 then
+puts "衝突しない"
+else 
+puts "衝突する"
+end
+
 end
 
 #描画
