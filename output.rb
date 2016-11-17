@@ -97,7 +97,7 @@ offset_image(20)
 end
 
 
-#描画情報
+#座標返還と線描画
 
 def dot_specific(mx,my,nx,ny,len)
 
@@ -125,6 +125,12 @@ sxa = center_x - xxxxx
 sya = center_y - yyyyy
 sxb = center_x + xxxxx
 syb = center_y + yyyyy
+
+#線描画
+stroke_color "000000"
+line [mxx, myy], [nxx, nyy]
+stroke
+
 
 #描画始点を求める
 
