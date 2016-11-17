@@ -55,15 +55,15 @@ line_list[i] = [linf[1][1],linf[1][2],linf[2][1],linf[2][2],linf[3]]
 i += 1
 end
 
-line_list.each do |h|
-p h
-end
+#line_list.each do |h|
+#p h
+#end
 
 
 #画像の読込・サイズ測定と縮尺獲得
 img = ImageList.new("1049.jpg")
-puts $ws = img.columns
-puts $hs = img.rows
+$ws = img.columns
+$hs = img.rows
 $scale = 750.000 / $ws
 
 
@@ -139,19 +139,19 @@ winfo = []
 if slope >= 0 then
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-winfo << sxa.round << sya.round << angle.round << len
+winfo << sxa << sya << angle << len
 else
 angle = angle + 180
-winfo << sxb.round << syb.round << angle.round << len
+winfo << sxb << syb << angle << len
 end
 
 else
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-winfo << sxa.round << syb.round << angle2.round << len
+winfo << sxa << syb << angle2 << len
 else
 angle2 = angle2 + 180
-winfo << sxa.round << syb.round << angle2.round << len
+winfo << sxa << syb << angle2 << len
 end
 
 end
@@ -168,10 +168,10 @@ dot2 = []
 dot3 = []
 dot4 = []
 
-dot1 = [winfo[0].round, winfo[1].round]
-dot2 = [(-ry1 + winfo[0]).round, (ry2 + winfo[1]).round]
-dot3 = [(ry4 - ry1 + winfo[0]).round, (ry3 + ry2 + winfo[1]).round]
-dot4 = [(ry4 + winfo[0]).round, (ry3 + winfo[1]).round]
+dot1 = [winfo[0], winfo[1]]
+dot2 = [(-ry1 + winfo[0]), (ry2 + winfo[1])]
+dot3 = [(ry4 - ry1 + winfo[0]), (ry3 + ry2 + winfo[1])]
+dot4 = [(ry4 + winfo[0]), (ry3 + winfo[1])]
 
 dinfo = []
 dinfo = [dot1, dot2, dot3, dot4]
@@ -328,9 +328,9 @@ line_list.each do |list|
 $dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])[1]
 end
 
-$dot_list.each do |list|
-p list
-end
+#$dot_list.each do |list|
+#p list
+#end
 
 judgement
 
@@ -338,8 +338,6 @@ info_box = []
 line_list.each do |list|
 info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
 end
-
-p info_box
 
 info_box.each do |list|
 coordinate(list[0],list[1],list[2],list[3])
