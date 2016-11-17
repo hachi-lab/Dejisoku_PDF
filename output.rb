@@ -97,7 +97,7 @@ offset_image(20)
 end
 
 
-#測定結果を出力するメソッド
+#描画情報
 
 def dot_specific(mx,my,nx,ny,len)
 
@@ -133,19 +133,19 @@ winfo = []
 if slope >= 0 then
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-winfo << sxa << sya << angle
+winfo << sxa.round << sya.round << angle.round << len
 else
 angle = angle + 180
-winfo << sxb << syb << angle
+winfo << sxb.round << syb.round << angle.round << len
 end
 
 else
 
 if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
-winfo << sxa << syb << angle2
+winfo << sxa.round << syb.round << angle2.round << len
 else
 angle2 = angle2 + 180
-winfo << sxa << syb << angle2
+winfo << sxa.round << syb.round << angle2.round << len
 end
 
 end
@@ -170,7 +170,7 @@ dot4 = [(ry4 + winfo[0]).round, (ry3 + winfo[1]).round]
 dinfo = []
 dinfo = [dot1, dot2, dot3, dot4]
 
-return dinfo
+return [winfo, dinfo]
 
 end
 
@@ -189,11 +189,11 @@ ans4 = (cx - dx) * (by - cy) + (cy - dy) * (cx - by)
 
 if ((ans1 >= 0 && ans2 <= 0) || (ans1 <= 0 && ans2 >= 0)) && ((ans3 >= 0 && ans4 <= 0) || (ans3 <= 0 && ans4 >= 0)) then
 
-return 1
+return 0
 
 else
 
-return 0
+return 1
 
 end
 end
@@ -205,7 +205,7 @@ def judgement
 h = 0
 i = 0
 
-aaa = []
+jbox = []
 
 fac = $dot_list.length
 numbers = []
@@ -216,6 +216,12 @@ numbers << g
 g = g + 1
 end
 
+cbox =[]
+
+numbers.combination(2) {|j,k|
+cbox << j << k
+}
+cbox = cbox.each_slice(2).to_a
 
 numbers.combination(2) {|j,k|
 
@@ -224,10 +230,10 @@ if h <= 2 then
 
 4.times do
 if i <= 2 then
-aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
 i = i + 1
 else
-aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
 end
 end
 
@@ -238,10 +244,10 @@ else
 
 4.times do
 if i <= 2 then
-aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
 i = i + 1
 else
-aaa << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
 end
 end
 end
@@ -250,29 +256,31 @@ end
 
 }
 
+jbox = jbox.each_slice(16).to_a
 
-p aaa.each_slice(16).to_a
+jbox2 = []
 
-
-k = 0
-aaa.each do |list|
-k = k + list
+jbox.each do |list|
+jbox2 << list.inject {|kake, n| kake * n }
 end
 
-if k == 0 then
-puts "衝突しない"
-else 
-puts "衝突する"
+m = 0
+jbox2.each do |list|
+if list == 0 then
+p cbox[m]
+end
+m = m + 1
 end
 
 end
+
 
 #描画
 
-def coordinate
+def coordinate(x, y, deg, len)
 
 stroke_color "000000"
-line [mxx,myy], [nxx,nyy]
+#line [mxx,myy], [nxx,nyy]
 stroke
 
 fill_color "000000"
@@ -280,6 +288,8 @@ stroke_color "ffffff"
 
 font_size(25.5) do
 text_rendering_mode(:fill_stroke) do
+
+draw_text(len, :at => [x, y], :rotate => deg)
 
 end
 
@@ -309,7 +319,7 @@ end
 $dot_list = []
 
 line_list.each do |list|
-$dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])
+$dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])[1]
 end
 
 $dot_list.each do |list|
@@ -318,5 +328,15 @@ end
 
 judgement
 
+info_box = []
+line_list.each do |list|
+info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
+end
+
+p info_box
+
+info_box.each do |list|
+coordinate(list[0],list[1],list[2],list[3])
+end
 
 }
