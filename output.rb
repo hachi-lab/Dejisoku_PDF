@@ -55,9 +55,9 @@ line_list[i] = [linf[1][1],linf[1][2],linf[2][1],linf[2][2],linf[3]]
 i += 1
 end
 
-#line_list.each do |h|
-#p h
-#end
+line_list.each do |h|
+p h
+end
 
 
 #画像の読込・サイズ測定と縮尺獲得
@@ -158,10 +158,12 @@ end
 
 #描画四点を求める
 
-ry1 = 34 * Math.sin(winfo[2])
-ry2 = 34 * Math.cos(winfo[2])
-ry3 = 85 * Math.sin(winfo[2])
-ry4 = 85 * Math.cos(winfo[2])
+rad = winfo[2] * Math::PI / 180
+
+ry1 = 34 * Math.sin(rad)
+ry2 = 34 * Math.cos(rad)
+ry3 = 85 * Math.sin(rad)
+ry4 = 85 * Math.cos(rad)
 
 dot1 = []
 dot2 = []
@@ -185,13 +187,11 @@ end
 
 def decision(ax, ay, bx, by, cx, cy, dx, dy)
 
-i = 0
+ans1 = (ax - bx) * (cy - ay) + (ay - by) * (ax - cx)
+ans2 = (ax - bx) * (dy - ay) + (ay - by) * (ax - dx)
 
-ans1 = (ax - bx) * (cy - ay) + (ay - by) * (ax - cy)
-ans2 = (ax - bx) * (dy - ay) + (ay - by) * (ax - dy)
-
-ans3 = (cx - dx) * (ay - cy) + (cy - dy) * (cx - ay)
-ans4 = (cx - dx) * (by - cy) + (cy - dy) * (cx - by)
+ans3 = (cx - dx) * (ay - cy) + (cy - dy) * (cx - ax)
+ans4 = (cx - dx) * (by - cy) + (cy - dy) * (cx - bx)
 
 if ((ans1 >= 0 && ans2 <= 0) || (ans1 <= 0 && ans2 >= 0)) && ((ans3 >= 0 && ans4 <= 0) || (ans3 <= 0 && ans4 >= 0)) then
 
@@ -207,9 +207,6 @@ end
 
 #判定(文字）
 def judgement
-
-h = 0
-i = 0
 
 jbox = []
 
@@ -231,34 +228,30 @@ cbox = cbox.each_slice(2).to_a
 
 numbers.combination(2) {|j,k|
 
-4.times do
-if h <= 2 then
-
-4.times do
-if i <= 2 then
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
-i = i + 1
-else
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
-end
-end
-
-h = h + 1
 i = 0
+h = 0
 
-else
+3.times do
 
-4.times do
-if i <= 2 then
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+3.times do
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
 i = i + 1
-else
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][0], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][0][0], $dot_list[k][0][1])
-end
-end
 end
 
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][3][0], $dot_list[k][3][1], $dot_list[k][0][0], $dot_list[k][0][1])
+
+i = 0
+h = h + 1
+
 end
+
+3.times do
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+i = i + 1
+end
+
+jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][3][0], $dot_list[k][3][1], $dot_list[k][0][0], $dot_list[k][0][1])
+
 
 }
 
@@ -269,6 +262,8 @@ jbox2 = []
 jbox.each do |list|
 jbox2 << list.inject {|kake, n| kake * n }
 end
+
+jbox2
 
 m = 0
 jbox2.each do |list|
@@ -338,6 +333,8 @@ info_box = []
 line_list.each do |list|
 info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
 end
+
+info_box
 
 info_box.each do |list|
 coordinate(list[0],list[1],list[2],list[3])
