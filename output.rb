@@ -263,15 +263,17 @@ jbox.each do |list|
 jbox2 << list.inject {|kake, n| kake * n }
 end
 
-jbox2
+cbox2 = []
 
 m = 0
 jbox2.each do |list|
 if list == 0 then
-p cbox[m]
+cbox2 << cbox[m]
 end
 m = m + 1
 end
+
+return cbox2
 
 end
 
@@ -327,14 +329,27 @@ end
 #p list
 #end
 
-judgement
+collision_box = []
+collision_box = judgement
+p collision_box
+
+rbox = []
+collision_box.each do |list|
+rbox << list[1]
+end
+p rbox.uniq!
 
 info_box = []
 line_list.each do |list|
 info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
 end
 
-info_box
+
+rbox.each do |list|
+rad = info_box[list][2] * Math::PI / 180
+info_box[list][0] = info_box[list][0] + 42.5 * Math.cos(rad)
+info_box[list][1] = info_box[list][1] + 42.5 * Math.sin(rad)
+end
 
 info_box.each do |list|
 coordinate(list[0],list[1],list[2],list[3])
