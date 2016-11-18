@@ -390,8 +390,6 @@ info_box.each do |list|
 ibox << trans(list[0], list[1], list[2], list[3])
 end
 
-p ibox
-
 collision_box = []
 collision_box = judgement(ibox)
 p collision_box
