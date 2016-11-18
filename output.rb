@@ -295,10 +295,37 @@ text_rendering_mode(:fill_stroke) do
 draw_text(len, :at => [x, y], :rotate => deg)
 
 end
-
 end
 
 end
+
+
+def trans(x, y, deg, len)
+
+rad = deg * Math::PI / 180
+
+ry1 = 34 * Math.sin(rad)
+ry2 = 34 * Math.cos(rad)
+ry3 = 85 * Math.sin(rad)
+ry4 = 85 * Math.cos(rad)
+
+dot1 = []
+dot2 = []
+dot3 = []
+dot4 = []
+
+dot1 = [x, y]
+dot2 = [(-ry1 + x), (ry2 + y)]
+dot3 = [(ry4 - ry1 + x), (ry3 + ry2 + y)]
+dot4 = [(ry4 + x), (ry3 + y)]
+
+dinfo = []
+dinfo = [dot1, dot2, dot3, dot4]
+
+return dinfo
+
+end
+
 
 
 #PDFの生成，座標の描画，画像の貼り付け等
@@ -347,12 +374,46 @@ rbox << list[1]
 end
 end
 
-p rbox.uniq!
+rbox.uniq!
+
+rbox.each do |list|
+rad = info_box[list][2] * Math::PI / 180
+info_box[list][0] = info_box[list][0] + 17 * Math.cos(rad)
+info_box[list][1] = info_box[list][1] + 17 * Math.sin(rad)
+end
+
+#衝突判定のアレ 
+until rbox.empty? == true do
+
+ibox = []
+info_box.each do |list|
+ibox << trans(list[0], list[1], list[2], list[3])
+end
+
+p ibox
+
+collision_box = []
+collision_box = judgement(ibox)
+p collision_box
+
+rbox = []
+collision_box.each do |list|
+if info_box[list[0]][0] >= info_box[list[1]][0] then
+rbox << list[0]
+else
+rbox << list[1]
+end
+end
+
+rbox.uniq!
 
 rbox.each do |list|
 rad = info_box[list][2] * Math::PI / 180
 info_box[list][0] = info_box[list][0] + 42.5 * Math.cos(rad)
 info_box[list][1] = info_box[list][1] + 42.5 * Math.sin(rad)
+end
+
+
 end
 
 info_box.each do |list|
