@@ -409,8 +409,8 @@ rbox.uniq!
 
 rbox.each do |list|
 rad = info_box[list][2] * Math::PI / 180
-info_box[list][0] = info_box[list][0] + 42.5 * Math.cos(rad)
-info_box[list][1] = info_box[list][1] + 42.5 * Math.sin(rad)
+info_box[list][0] = info_box[list][0] + 17 * Math.cos(rad)
+info_box[list][1] = info_box[list][1] + 17 * Math.sin(rad)
 end
 
 
