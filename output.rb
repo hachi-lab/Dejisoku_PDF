@@ -206,11 +206,11 @@ end
 
 
 #判定(文字）
-def judgement
+def judgement(ary)
 
 jbox = []
 
-fac = $dot_list.length
+fac = ary.length
 numbers = []
 g = 0
 
@@ -234,11 +234,11 @@ h = 0
 3.times do
 
 3.times do
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][h + 1][0], ary[j][h + 1][1], ary[k][i][0], ary[k][i][1], ary[k][i + 1][0], ary[k][i + 1][1])
 i = i + 1
 end
 
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][h + 1][0], $dot_list[j][h + 1][1], $dot_list[k][3][0], $dot_list[k][3][1], $dot_list[k][0][0], $dot_list[k][0][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][h + 1][0], ary[j][h + 1][1], ary[k][3][0], ary[k][3][1], ary[k][0][0], ary[k][0][1])
 
 i = 0
 h = h + 1
@@ -246,11 +246,11 @@ h = h + 1
 end
 
 3.times do
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][i][0], $dot_list[k][i][1], $dot_list[k][i + 1][0], $dot_list[k][i + 1][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][0][0], ary[j][0][1], ary[k][i][0], ary[k][i][1], ary[k][i + 1][0], ary[k][i + 1][1])
 i = i + 1
 end
 
-jbox << decision($dot_list[j][h][0], $dot_list[j][h][1], $dot_list[j][0][0], $dot_list[j][0][1], $dot_list[k][3][0], $dot_list[k][3][1], $dot_list[k][0][0], $dot_list[k][0][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][0][0], ary[j][0][1], ary[k][3][0], ary[k][3][1], ary[k][0][0], ary[k][0][1])
 
 
 }
@@ -319,10 +319,10 @@ end
 
 #描画座標情報を格納
 
-$dot_list = []
+dot_list = []
 
 line_list.each do |list|
-$dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])[1]
+dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])[1]
 end
 
 #$dot_list.each do |list|
@@ -335,7 +335,7 @@ info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
 end
 
 collision_box = []
-collision_box = judgement
+collision_box = judgement(dot_list)
 p collision_box
 
 rbox = []
