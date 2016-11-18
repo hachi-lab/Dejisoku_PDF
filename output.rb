@@ -329,21 +329,25 @@ end
 #p list
 #end
 
+info_box = []
+line_list.each do |list|
+info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
+end
+
 collision_box = []
 collision_box = judgement
 p collision_box
 
 rbox = []
 collision_box.each do |list|
+if info_box[list[0]][0] >= info_box[list[1]][0] then
+rbox << list[0]
+else
 rbox << list[1]
 end
-p rbox.uniq!
-
-info_box = []
-line_list.each do |list|
-info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
 end
 
+p rbox.uniq!
 
 rbox.each do |list|
 rad = info_box[list][2] * Math::PI / 180
