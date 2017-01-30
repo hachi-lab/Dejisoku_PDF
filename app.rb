@@ -6,6 +6,9 @@ require 'json'
 require 'rest_client'
 include Magick
 
+
+#デジカメ計速のAPIから情報を取得する．
+def dejisoku_api
 #デジカメ計速のAPIとアカウント指定
 $api_server = 'http://api2.dc-keisoku.com'
 $username = 'tanaka_lab'
@@ -48,23 +51,24 @@ ret = RestClient.post("#{$api_server}/point/get_line_all_detail",
 key: $key,
 image_id: $image_id)
 line_info = JSON.parse(ret)
-line_list = []
+$line_list = []
 i = 0
 line_info.each do |linf|
-line_list[i] = [linf[1][1],linf[1][2],linf[2][1],linf[2][2],linf[3]]
+$line_list[i] = [linf[1][1],linf[1][2],linf[2][1],linf[2][2],linf[3]]
 i += 1
 end
 
-line_list.each do |h|
+$line_list.each do |h|
 p h
 end
-
 
 #画像の読込・サイズ測定と縮尺獲得
 img = ImageList.new("1049.jpg")
 $ws = img.columns
 $hs = img.rows
 $scale = 750.000 / $ws
+
+end
 
 
 #画像のオフセット表示
@@ -73,15 +77,15 @@ image (open $gazo), :width => 750, :vposition => mv
 $mvv = mv
 end
 
-#出力形式の作成
 
+#出力形式の作成
 def plane
 stroke_axis
 stroke_circle [0,0] , 10
 
 offset_image(0)
-
 end
+
 
 def kit
 stroke_axis
@@ -93,9 +97,18 @@ formatted_text_box [
 image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
 
 offset_image(20)
-
 end
 
+
+#出力形式の選択
+def select_type
+case ARGV[0]
+when "plane" then
+plane
+when "kit" then
+kit
+end
+end
 
 #座標返還と線描画
 
@@ -274,12 +287,10 @@ m = m + 1
 end
 
 return cbox2
-
 end
 
 
-#描画
-
+#土台の描画
 def coordinate(x, y, deg, len)
 
 stroke_color "000000"
@@ -293,13 +304,12 @@ font_size(25.5) do
 text_rendering_mode(:fill_stroke) do
 
 draw_text(len, :at => [x, y], :rotate => deg)
-
 end
 end
-
 end
 
 
+#文字のポインタ数から座標位置を変換
 def trans(x, y, deg, len)
 
 rad = deg * Math::PI / 180
@@ -327,37 +337,27 @@ return dinfo
 end
 
 
-
+#実行メソッド
+def pdff
 #PDFの生成，座標の描画，画像の貼り付け等
-
 f_name = File.basename(__FILE__, ".rb")+".pdf"
 Prawn::Document.generate(f_name,
 :page_size => 'A4',
 :page_layout => :landscape){
 
-#出力形式の選択
-case ARGV[0]
-when "plane" then
-plane
-when "kit" then
-kit
-end
-
+dejisoku_api
+select_type
 
 #描画座標情報を格納
 
 dot_list = []
 
-line_list.each do |list|
+$line_list.each do |list|
 dot_list << dot_specific(list[0],list[1],list[2],list[3],list[4])[1]
 end
 
-#$dot_list.each do |list|
-#p list
-#end
-
 info_box = []
-line_list.each do |list|
+$line_list.each do |list|
 info_box << dot_specific(list[0],list[1],list[2],list[3],list[4])[0]
 end
 
@@ -419,3 +419,6 @@ coordinate(list[0],list[1],list[2],list[3])
 end
 
 }
+end
+
+pdff
