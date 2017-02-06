@@ -382,7 +382,7 @@ info_box[list][0] = info_box[list][0] + 17 * Math.cos(rad)
 info_box[list][1] = info_box[list][1] + 17 * Math.sin(rad)
 end
 
-#衝突判定のアレ 
+#衝突判定の計算等 
 until rbox.empty? == true do
 
 ibox = []
