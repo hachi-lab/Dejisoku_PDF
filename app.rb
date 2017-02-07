@@ -94,7 +94,8 @@ stroke_circle [0,0] , 10
 formatted_text_box [
 { :text => "Kyushu Institute of Technology", :styles => [:italic], :size => 30}
 ], :at => [50,50]
-image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), :height => 75, :at => [500,75]
+image (open "http://www.iizuka.kyutech.ac.jp/kit/wp-content/uploads/2014/01/logo021.jpg"), 
+:height => 75, :at => [500,75]
 
 offset_image(20)
 end
@@ -151,7 +152,8 @@ winfo = []
 
 if slope >= 0 then
 
-if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
+if slope * origin_x + intercept > origin_y ||
+(slope * origin_x + intercept <= origin_y && angle <= 45) then
 winfo << sxa << sya << angle << len
 else
 angle = angle + 180
@@ -160,7 +162,8 @@ end
 
 else
 
-if slope * origin_x + intercept > origin_y || (slope * origin_x + intercept <= origin_y && angle <= 45) then
+if slope * origin_x + intercept > origin_y ||
+(slope * origin_x + intercept <= origin_y && angle <= 45) then
 winfo << sxa << syb << angle2 << len
 else
 angle2 = angle2 + 180
@@ -206,7 +209,9 @@ ans2 = (ax - bx) * (dy - ay) + (ay - by) * (ax - dx)
 ans3 = (cx - dx) * (ay - cy) + (cy - dy) * (cx - ax)
 ans4 = (cx - dx) * (by - cy) + (cy - dy) * (cx - bx)
 
-if ((ans1 >= 0 && ans2 <= 0) || (ans1 <= 0 && ans2 >= 0)) && ((ans3 >= 0 && ans4 <= 0) || (ans3 <= 0 && ans4 >= 0)) then
+if ((ans1 >= 0 && ans2 <= 0) ||
+(ans1 <= 0 && ans2 >= 0)) && ((ans3 >= 0 && ans4 <= 0) || 
+(ans3 <= 0 && ans4 >= 0)) then
 
 return 0
 
@@ -247,11 +252,13 @@ h = 0
 3.times do
 
 3.times do
-jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][h + 1][0], ary[j][h + 1][1], ary[k][i][0], ary[k][i][1], ary[k][i + 1][0], ary[k][i + 1][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][h + 1][0], ary[j][h + 1][1],
+ary[k][i][0], ary[k][i][1], ary[k][i + 1][0], ary[k][i + 1][1])
 i = i + 1
 end
 
-jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][h + 1][0], ary[j][h + 1][1], ary[k][3][0], ary[k][3][1], ary[k][0][0], ary[k][0][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][h + 1][0], ary[j][h + 1][1], 
+ary[k][3][0], ary[k][3][1], ary[k][0][0], ary[k][0][1])
 
 i = 0
 h = h + 1
@@ -259,11 +266,13 @@ h = h + 1
 end
 
 3.times do
-jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][0][0], ary[j][0][1], ary[k][i][0], ary[k][i][1], ary[k][i + 1][0], ary[k][i + 1][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][0][0], ary[j][0][1], 
+ary[k][i][0], ary[k][i][1], ary[k][i + 1][0], ary[k][i + 1][1])
 i = i + 1
 end
 
-jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][0][0], ary[j][0][1], ary[k][3][0], ary[k][3][1], ary[k][0][0], ary[k][0][1])
+jbox << decision(ary[j][h][0], ary[j][h][1], ary[j][0][0], ary[j][0][1], 
+ary[k][3][0], ary[k][3][1], ary[k][0][0], ary[k][0][1])
 
 
 }
